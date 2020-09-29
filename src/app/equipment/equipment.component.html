@@ -1,0 +1,22 @@
+<div class="equipment-component container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Equipment</h2>
+            <form [formGroup]="filterForm">
+                <input
+                    type="text"
+                    placeholder="Search..."
+                    class="form-control"
+                    formControlName="keyword"
+                />
+            </form>
+
+            <div class="list">
+                <ng-container *ngFor="let equipment of filteredEquipments">
+                    <app-equipment-item-component [equipment]="equipment">
+                    </app-equipment-item-component>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

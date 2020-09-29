@@ -1,0 +1,48 @@
+<div class="card">
+    <div
+        class="card-body"
+        [class.warning]="!equipment.equipment_type || !equipment.manufacturer"
+        (click)="toggle()"
+    >
+        <div class="row">
+            <div class="col-md-2">
+                <ng-container *ngIf="!equipment.equipment_photos; else image"></ng-container>
+                <ng-template #image>
+                    <img class="img-thumbnail" [src]="equipment.equipment_photos[0]?.thumbnail_url" alt="" />
+                </ng-template>
+            </div>
+            <div class="col-md-10">
+                <p class="m-0">{{ equipment.description }}</p>
+                <p class="m-0">
+                    <span class="badge badge-secondary mr-1">
+                        <fa name="map-pin"></fa> {{ equipment.equipment_type }}
+                    </span>
+                    <span class="badge badge-primary">{{ equipment.manufacturer }}</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="row mt-3" [ngbCollapse]="isCollapsed">
+            <div class="col-md-6">
+                <label class="control-label"><small>Manufacturer</small></label>
+                <p>{{ equipment.manufacturer }}</p>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <label class="control-label d-block"><strong>Unit photos</strong></label>
+                    <ng-container *ngIf="!equipment.equipment_photos; else images">NO UNIT PHOTOS</ng-container>
+                    <ng-template #images>
+                        <img class="img-thumbnail" [src]="equipment.equipment_photos[0]?.thumbnail_url" alt="" />
+                    </ng-template>
+                </div>
+                <div class="mt-3">
+                    <label class="control-label d-block"><strong>Serial photos</strong></label>
+                    <ng-container *ngIf="!equipment.equipment_photos; else images">NO SERIAL PHOTOS</ng-container>
+                    <ng-template #images>
+                        <img class="img-thumbnail" [src]="equipment.equipment_photos[0]?.full_size_url" alt="" />
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
